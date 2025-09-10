@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación - 79° Aniversario de María Elena Neri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #f8f4e6 0%, #e8dcc0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5d4e37;
+            overflow-x: hidden;
+        }
+
+        .invitation-container {
+            max-width: 600px;
+            width: 90%;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(139, 108, 75, 0.3);
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8b6c4b 0%, #a68660 100%);
+            color: #f8f4e6;
+            text-align: center;
+            padding: 40px 30px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '✝';
+            font-size: 2rem;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.7;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .age-highlight {
+            background: rgba(248, 244, 230, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .content::before {
+            content: '🕊️';
+            font-size: 1.5rem;
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            opacity: 0.6;
+        }
+
+        .content::after {
+            content: '🕊️';
+            font-size: 1.5rem;
+            position: absolute;
+            top: 10px;
+            right: 30px;
+            opacity: 0.6;
+        }
+
+        .celebration-text {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #8b6c4b;
+            font-weight: 600;
+        }
+
+        .details-section {
+            background: #f8f4e6;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #8b6c4b;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-icon {
+            font-size: 1.3rem;
+            margin-right: 15px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .detail-text {
+            flex: 1;
+        }
+
+        .location-link {
+            color: #8b6c4b;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px dotted #8b6c4b;
+            transition: all 0.3s ease;
+        }
+
+        .location-link:hover {
+            background: #8b6c4b;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border-bottom: none;
+        }
+
+        .blessing {
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #6d5a47;
+            padding: 20px;
+            background: rgba(139, 108, 75, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(139, 108, 75, 0.2);
+        }
+
+        .footer {
+            background: #8b6c4b;
+            color: #f8f4e6;
+            text-align: center;
+            padding: 25px;
+            font-size: 1rem;
+        }
+
+        .footer-cross {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #8b6c4b;
+            border-radius: 50px;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(139, 108, 75, 0.4);
+            z-index: 1000;
+        }
+
+        .play-btn {
+            background: none;
+            border: none;
+            color: #f8f4e6;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background: rgba(248, 244, 230, 0.2);
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .invitation-container {
+                width: 95%;
+                margin: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header h2 {
+                font-size: 1.4rem;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .details-section {
+                padding: 20px;
+            }
+
+            .audio-controls {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px;
+            }
+
+            .play-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container floating">
+        <div class="header">
+            <h1>María Elena Neri</h1>
+            <h2>Celebración de Vida</h2>
+            <div class="age-highlight">79 Años de Bendiciones</div>
+        </div>
+
+        <div class="content">
+            <p class="celebration-text">
+                Con gran alegría te invitamos a celebrar este día especial
+            </p>
+
+            <div class="details-section">
+                <div class="detail-item">
+                    <span class="detail-icon">🎂</span>
+                    <div class="detail-text">
+                        <strong>Cumpleaños:</strong> 9 de Septiembre, 2025
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-icon">🎉</span>
+                    <div class="detail-text">
+                        <strong>Celebración:</strong> Sábado 13 de Septiembre, 2025
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-icon">🕒</span>
+                    <div class="detail-text">
+                        <strong>Hora:</strong> A partir de las 3:00 PM
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-icon">📍</span>
+                    <div class="detail-text">
+                        <strong>Lugar:</strong> Salón de Fiestas<br>
+                        Entre Padilla y Veracruz, Cumbres de Arbide<br>
+                        <a href="https://maps.google.com/?q=21.126036487300908,-101.70430877189267" 
+                           target="_blank" class="location-link">
+                            Ver en Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blessing">
+                "Que el Señor te bendiga y te guarde, que haga resplandecer su rostro sobre ti y te conceda la paz."
+                <br><small>- Números 6:24-26</small>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span class="footer-cross">✝</span>
+            Tu presencia será el mejor regalo
+            <br>
+            ¡Esperamos verte allí!
+        </div>
+    </div>
+
+    <div class="audio-controls">
+        <button class="play-btn" onclick="toggleMusic()">
+            <span id="play-icon">🎵</span>
+        </button>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="maria elena.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        let isPlaying = false;
+        const audio = document.getElementById('background-music');
+        const playIcon = document.getElementById('play-icon');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.textContent = '🎵';
+                isPlaying = false;
+            } else {
+                audio.play().catch(e => {
+                    console.log('Error al reproducir audio:', e);
+                });
+                playIcon.textContent = '⏸️';
+                isPlaying = true;
+            }
+        }
+
+        audio.addEventListener('ended', () => {
+            playIcon.textContent = '🎵';
+            isPlaying = false;
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.invitation-container');
+            container.style.animation = 'fadeIn 1.5s ease-out';
+        });
+    </script>
+</body>
+</html>
